@@ -1,4 +1,4 @@
-**RESTCaptcha** is an easy-to-integrate, privacy-friendly CAPTCHA solution that does not require users to solve image puzzles or maths problems.
+RESTCaptcha is an easy-to-integrate, privacy-friendly CAPTCHA solution that does not require users to solve image puzzles or maths problems.
 
 Instead, RESTCaptcha uses a proof-of-work mechanism to verify human interaction with your form.
 
@@ -37,7 +37,7 @@ The following live demos are available:
 
     We have implemented a small website using PHP and Bootstrap 5 to demonstrate the use of RESTCaptcha.
 
-    [:octicons-arrow-right-24: Visit the site](https://php-demo.captcha.openpotato.org/)
+    [:octicons-arrow-right-24: Visit the site](https://php-demo.restcaptcha.openpotato.org/)
 
 -   :material-dot-net:{ .lg .middle } &nbsp;
     __ASP\.NET-Demo__
@@ -46,7 +46,7 @@ The following live demos are available:
 
     We have built the same website using ASP.NET Core and Bootstrap 5.
 
-    [:octicons-arrow-right-24: Visit the site](https://dotnet-demo.captcha.openpotato.org/)
+    [:octicons-arrow-right-24: Visit the site](https://dotnet-demo.restcaptcha.openpotato.org/)
 
 </div>
 
