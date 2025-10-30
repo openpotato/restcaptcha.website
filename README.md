@@ -1,6 +1,6 @@
 # RESTCaptcha Documentation
 
-This is the documentation for the [RESTCaptcha project](https://github.com/openpotato/restcaptcha). It is published under https://openpotato.github.io/restcaptcha/.
+This is the documentation for the [RESTCaptcha project](https://github.com/openpotato/restcaptcha).
 
 ## Technology stack
 
