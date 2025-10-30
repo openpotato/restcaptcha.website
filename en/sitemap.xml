@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/</loc>
+         <loc>https://restcaptcha.openpotato.org/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/api/</loc>
+         <loc>https://restcaptcha.openpotato.org/api/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/captcha/</loc>
+         <loc>https://restcaptcha.openpotato.org/captcha/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/change-log/</loc>
+         <loc>https://restcaptcha.openpotato.org/change-log/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/community/</loc>
+         <loc>https://restcaptcha.openpotato.org/community/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/configuration/</loc>
+         <loc>https://restcaptcha.openpotato.org/configuration/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/faq/</loc>
+         <loc>https://restcaptcha.openpotato.org/faq/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/integration/</loc>
+         <loc>https://restcaptcha.openpotato.org/integration/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/libraries/</loc>
+         <loc>https://restcaptcha.openpotato.org/libraries/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/security/</loc>
+         <loc>https://restcaptcha.openpotato.org/security/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/ubuntu/</loc>
+         <loc>https://restcaptcha.openpotato.org/ubuntu/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/widget/</loc>
+         <loc>https://restcaptcha.openpotato.org/widget/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
     <url>
-         <loc>https://openpotato.github.io/restcaptcha/windows/</loc>
+         <loc>https://restcaptcha.openpotato.org/windows/</loc>
          <lastmod>2025-10-30</lastmod>
     </url>
 </urlset>
