@@ -2,7 +2,7 @@ RESTCaptcha is an easy-to-integrate, privacy-friendly CAPTCHA solution that does
 
 Instead, RESTCaptcha uses a proof-of-work mechanism to verify human interaction with your form.
 
-## Features
+Features:
 
 + Stateless challenge with an HMAC-signed nonce (a one-time-use string)
 + Client-side proof-of-work puzzle (SHA-256, SHA-384, or SHA-512 hash below a defined threshold)
