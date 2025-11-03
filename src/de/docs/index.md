@@ -18,7 +18,7 @@ Funktionen:
 RESTCaptcha verarbeitet oder speichert keine personenbezogenen Daten:
 
 + Es werden keine Cookies oder serverseitige Tracking-Technologien eingesetzt.
-+ Die Fingerprint-Überprüfung des Web-Browser-Client läuft vollstränfig clientseitig ab.
++ Die Fingerprint-Überprüfung des Web-Browsers läuft vollständig clientseitig ab.
 + Bei der Verifizierung werden nur die für den technischen Ablauf notwendigen Daten verarbeitet: Die anonyme Challenge-Lösung und (je nach Konfiguration) die IP-Adresse des Clients für Logging-Zwecke.
 + RESTCaptcha kann vollständig auf eigenen Servern betrieben werden, sodass alle Daten unter eigener Kontrolle bleiben.
 + Der Quellcode ist offen (Open Source) und kann jederzeit überprüft oder auditiert werden.
