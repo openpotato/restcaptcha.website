@@ -94,7 +94,7 @@ Frühe und "klassische" CAPTCHAs präsentierten in der Regel explizite Rätsel, 
 
     Ähnlich kann die Zeit zwischen Laden und Absenden gemessen werden. Wenn ein Formular beispielsweise innerhalb einer Sekunde abgeschickt wird, war es vermutlich ein Bot. 
     
-    Diese Tests sind einfach und belasten Nutzer nicht, stoppen aber nur einfache Bots. Fortgeschrittene Angreifer sind ind er Lage, diese zu umgehen.
+    Diese Tests sind einfach und belasten Nutzer nicht, stoppen aber nur einfache Bots. Fortgeschrittene Angreifer sind in der Lage, diese zu umgehen.
 
 ## Abgrenzung zu RESTCaptcha
 
@@ -102,10 +102,10 @@ RESTCaptcha implementiert eine Kombination aus Proof-of-Work-Challenge, Analyse 
 
 Um es vorweg zu nehmen: RESTCaptcha ist keine revolutionäre Neuerung ins Sachen CAPTCHA-Architektur. Vielmehr ging es uns darum, folgende Anforderungen umzusetzen:
 
-+ Eine **Open-Source-Lösung**, die komplett konfigurierbar ist und von jederman selbst gehostet weden kann (Stichwort: Digitale Souveränität)
++ Eine **Open-Source-Lösung**, die komplett konfigurierbar ist und von jedermann selbst gehostet werden kann (Stichwort: Digitale Souveränität)
 
 + Eine **datenschutzfreundliche, DSGVO-kompatible** Implementation. Also keine Speicherung von personenbezogenen Daten.
 
 + Eine sehr **einfache Integration** in bestehende Webseiten, ohne größere Programmierarbeit.
 
-+ Eine Nutzererfahrung, die **angenehm und möglichst barrierefrei** ist. Also keine Bilderätsel, verzerrten Texte oder mathematischen Rechenaufgaben, die man vor lauter Stress auch noch falsch löst.
++ Eine Nutzererfahrung, die **angenehm und möglichst barrierefrei** ist. Also keine Bilderrätsel, verzerrten Texte oder mathematischen Rechenaufgaben, die man vor lauter Stress auch noch falsch löst.
