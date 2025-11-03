@@ -162,7 +162,7 @@ if ($isVerified) {
 
 !!! warning "Important"
 
-   The **siteSecret** must only ever be stored on your server. Never expose it in the browser or client-side code!
+    The **siteSecret** must only ever be stored on your server. Never expose it in the browser or client-side code!
 
 ## Additional resources
 
