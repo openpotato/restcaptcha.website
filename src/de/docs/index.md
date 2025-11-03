@@ -13,6 +13,16 @@ Funktionen:
 + Multilingual (zurzeit: Englisch, Deutsch, Französisch, Italienisch, Portugiesisch, Spanisch)
 + Entwickelt mit [.NET 9](https://dotnet.microsoft.com/) und [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript).
 
+## Datenschutz
+
+RESTCaptcha verarbeitet oder speichert keine personenbezogenen Daten:
+
++ Es werden keine Cookies oder serverseitige Tracking-Technologien eingesetzt.
++ Die Fingerprint-Überprüfung des Web-Browser-Client läuft vollstränfig clientseitig ab.
++ Bei der Verifizierung werden nur die für den technischen Ablauf notwendigen Daten verarbeitet: Die anonyme Challenge-Lösung und (je nach Konfiguration) die IP-Adresse des Clients für Logging-Zwecke.
++ RESTCaptcha kann vollständig auf eigenen Servern betrieben werden, sodass alle Daten unter eigener Kontrolle bleiben.
++ Der Quellcode ist offen (Open Source) und kann jederzeit überprüft oder auditiert werden.
+
 ## Funktionsweise
 
 Wer beim Begriff *CAPTCHA* nur Bahnhof versteht, der sollte sich zunächst das Kapitel [Was sind CAPTCHAs?](captcha.md) durchlesen.
