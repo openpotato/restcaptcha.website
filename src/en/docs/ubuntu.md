@@ -51,7 +51,7 @@ wget -S --spider localhost
 
 RESTCaptcha requires the [ASP.NET framework](https://dotnet.microsoft.com/apps/aspnet) as a dependency.
 
-The installation of ASP.NET Core 9 is described in detail in the [Microsoft documentation](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?pivots=os-linux-ubuntu-2204&tabs=dotnet9). Here’s the short version:
+The installation of ASP.NET Core 10 is described in detail in the [Microsoft documentation](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?pivots=os-linux-ubuntu-2404&tabs=dotnet10). Here’s the short version:
 
 First, add the package repository:
 
@@ -63,7 +63,7 @@ Then install the ASP.NET Core runtime:
 
 ``` bash
 sudo apt-get update && sudo apt-get install -y apt-transport-https 
-sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-9.0
+sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-10.0
 ```
 
 ## Installing RESTCaptcha

@@ -43,18 +43,17 @@ Invoke-WebRequest -Uri "http://localhost" -UseBasicParsing
 
 RESTCaptcha requires the [ASP.NET framework](https://dotnet.microsoft.com/apps/aspnet) as a dependency.
 
-Open PowerShell as an administrator and run the following command to install the [ASP.NET Core 9.0 Runtime – Windows Hosting Bundle](https://dotnet.microsoft.com/download/dotnet/9.0):
+Open PowerShell as an administrator and run the following command to install the [ASP.NET Core 10.0 Runtime – Windows Hosting Bundle](https://dotnet.microsoft.com/download/dotnet/10.0):
 
 ``` powershell
-winget install --id=Microsoft.DotNet.HostingBundle.9 -e --accept-package-agreements --accept-source-agreements
+winget install --id=Microsoft.DotNet.HostingBundle.10 -e --accept-package-agreements --accept-source-agreements
 ```
 
 ## Installing RESTCaptcha
 
 ### Copying the binaries
 
-Create a new folder for RESTCaptcha (for example, `C:\Sites\RestCaptcha`) and copy the binaries from the [latest release](https://github.com/openpotato/restcaptcha/releases/latest) into it.
-The following PowerShell one-liner does this automatically:
+Create a new folder for RESTCaptcha (for example, `C:\Sites\RestCaptcha`) and copy the binaries from the [latest release](https://github.com/openpotato/restcaptcha/releases/latest) into it. The following PowerShell one-liner does this automatically:
 
 ``` powershell
 $r=Invoke-RestMethod "https://api.github.com/repos/openpotato/restcaptcha/releases/latest" -Headers @{ "User-Agent"="PS" };$a=$r.assets|?{ $_.name -like "*.zip"}|select -f 1;$zip="$env:TEMP\$($a.name)";Invoke-WebRequest $a.browser_download_url -OutFile $zip -Headers @{ "User-Agent"="PS" };Expand-Archive $zip -DestinationPath "C:\Sites\RestCaptcha" -Force;Remove-Item $zip
@@ -163,8 +162,7 @@ In the folder `C:\Sites\RestCaptcha`, create a new file named `web.config` and i
 </configuration>
 ```
 
-The [web.config](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/web-config?view=aspnetcore-9.0) file configures RESTCaptcha as an ASP.NET application, defining how incoming requests are handled.
-In this case, RESTCaptcha runs within the IIS worker process (*in-process hosting model*).
+The [web.config](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/web-config?view=aspnetcore-10.0) file configures RESTCaptcha as an ASP.NET application, defining how incoming requests are handled. In this case, RESTCaptcha runs within the IIS worker process (*in-process hosting model*).
 
 That completes the basic configuration. Restart your IIS site:
 
@@ -179,10 +177,8 @@ You can now test the RESTCaptcha health endpoint locally:
 Invoke-WebRequest -Uri "http://localhost:8080/health" -UseBasicParsing
 ```
 
-For public access, you still need a **TLS certificate** for your **HTTPS** binding.
-A good option is to use [Let’s Encrypt](https://letsencrypt.org/) to generate free TLS certificates.
+For public access, you still need a **TLS certificate** for your **HTTPS** binding. A good option is to use [Let’s Encrypt](https://letsencrypt.org/) to generate free TLS certificates.
 
-To do this, install an ACME client. One of the best for Windows is [simple-acme](https://simple-acme.com/).
-Install and run the command-line tool — once you’ve answered the prompts, simple-acme will communicate with Let’s Encrypt, request a TLS certificate for the domain `captcha.example.com`, and configure it automatically.
+To do this, install an ACME client. One of the best for Windows is [simple-acme](https://simple-acme.com/). Install and run the command-line tool — once you’ve answered the prompts, simple-acme will communicate with Let’s Encrypt, request a TLS certificate for the domain `captcha.example.com`, and configure it automatically.
 
 A test in your web browser at `https://captcha.example.com/health` should now work successfully.

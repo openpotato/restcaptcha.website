@@ -4,6 +4,13 @@ RESTCaptcha is [open source](https://github.com/openpotato/restcaptcha) on GitHu
 
 We largely follow the recommendations from the community project [Keep a Changelog](https://keepachangelog.com/en/).
 
-## 0.1.0 <small>_October 30 , 2025</small>
+## 0.2.0 <small>_December 08, 2025</small>
+
+**Added**
+
++ Support for IP reputation checks via (AbuseDBIP)[https://www.abuseipdb.com/] and/or [Spamhaus](https://www.spamhaus.org/).
++ Support for .NET 10.
+
+## 0.1.0 <small>_October 30, 2025</small>
 
 Initial release.

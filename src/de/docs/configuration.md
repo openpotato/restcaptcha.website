@@ -10,12 +10,15 @@ Alle RESTCaptcha-spezifischen Konfigurationsdaten befinden sich unter `RestCaptc
 {
   ...
   "RestCaptcha": {
-    "ChallengeType": {
+    "BehaviorMap": [
       ...
-    },
+    ],
     "HMACKey": "<Generierter Wert>",
     "NonceMaxTTL": "00:30:00",
     "VerificationMinDelay": "00:00:02",
+    "IpReputationCheck": {
+      ...
+    },
     "HealthCheck": {
       ...
     },
@@ -28,9 +31,9 @@ Alle RESTCaptcha-spezifischen Konfigurationsdaten befinden sich unter `RestCaptc
 
 Die Eigenschaften haben folgende Bedeutung:
 
-**`ChallengeType`**
+**`BehaviorMap`**
 
-:   Konfigurationsdaten zum Challenge-Typ, den eine Formularseite bei Anfrage zurückgesendet bekommt (siehe weiter unten). Der Challenge-Typ definiert, was der Nutzer einer Formularseite bzw. die Formularseite selbst machen muss, um eine gültige Lösung zu generieren.
+:   Definiert, wie RESTCaptcha auf unterschiedliche Risikowerte einer Anfrage reagieren soll. Je höher der Risiko-Score, desto strenger sollte die Maßnahme ausfallen. Der Risiko-Score liegt zwischen 0 (sehr geringes Risiko) und 100 (sehr hohes Risiko). Mögliche Reaktionen sind entweder eine Captcha-Challenge mit unterschiedlicher Schwierigkeit oder Blocken der Anfrage.
 
 **`HMACKey`**
 
@@ -45,6 +48,10 @@ Zufallsgenerator wie z.B. [1Password - Password Generator](https://1password.com
 
 :   Mindestverzögerung zwischen dem Empfang der Challenge-Anfrage und der serverseitigen Überprüfung. Der Standardwert ist `"00:00:02"` (2 Sekunden).
 
+**`IpReputationCheck`**
+
+:   Konfigurationsdaten für die Durchführung von IP-Reputationsüberprüfungen. IP-Reputationsüberprüfungen sind entscheidend für die erstellung eines Risiko-Score.
+
 **`HealthCheck`**
 
 :   Konfigurationsdaten zum HealthCheck-Endpunkt (siehe weiter unten).
@@ -53,7 +60,70 @@ Zufallsgenerator wie z.B. [1Password - Password Generator](https://1password.com
 
 :   Konfigurationsdaten der registrierten Webseiten (siehe weiter unten).
 
-## RestCaptcha.ChallengeType
+## RestCaptcha.BehaviorMap[]
+
+Ein typischer Inhalt in der BehaviorMap sieht wie folgt aus:
+
+``` json
+{
+  ...
+  "RestCaptcha": {
+    ...
+    "BehaviorMap": [
+    {
+      "minRiskScore": 0,
+      "maxRiskScore": 25,
+      "action": "challenge",
+      "ChallengeType": {
+        "type": "proofOfWork",
+        "algorithm": "hash-sha-256",
+        "difficulty": 4
+      }
+    },
+    {
+      "minRiskScore": 25,
+      "maxRiskScore": 75,
+      "action": "challenge",
+      "ChallengeType": {
+        "type": "proofOfWork",
+        "algorithm": "hash-sha-512",
+        "difficulty": 6
+      }
+    },
+    {
+      "minRiskScore": 75,
+      "maxRiskScore": 100,
+      "action": "block"
+    }
+  ],
+  ...
+}  
+```
+
+Jeder Eintrag definiert eine Reaktion für einen bestimmten Risiko-Score-Berreich. Die Eigenschaften haben folgende Bedeutung:
+
+**`minRiskScore`**
+
+:   Der minimale Risiko-Score, ab dem etwas geschehen soll.
+
+**`maxRiskScore`**
+
+:   Der maximale Risiko-Score, bis zu dem etwas geschehen soll.
+
+**`action`**
+
+:   Die Aktion, die mit dem definierten Risiko-Score-Berreich vernüpft ist:
+
+    Wert        | Beschreibung
+    ------------| ------------
+    `challenge` | Es wird eine Challenge generiert und zurückgeliefert
+    `block`     | Die Anfrage wird geblockt
+
+**`ChallengeType`**
+
+:   Ist als Aktion `challenge` spezifiziert, wird hier der gewünschte Challenge-Typ definiert.
+
+## RestCaptcha.BehaviorMap[].ChallengeType
 
 RESTCaptcha ist dazu ausgelegt, mit unterschiedlichen Challenge-Typen zu arbeiten (momentan ist aber nur einer implementiert 😊).
 
@@ -72,13 +142,10 @@ Der folgende Konfigurationsausschnitt zeigt die Standardwerte des Challenge-Typs
 ``` json
 {
   ...
-  "RestCaptcha": {
-    "ChallengeType": {
-      "type": "proofOfWork",
-      "algorithm": "hash-sha-256",
-      "difficulty": 4
-    },
-    ...
+  "ChallengeType": {
+    "type": "proofOfWork",
+    "algorithm": "hash-sha-256",
+    "difficulty": 4
   }
 }
 ```
@@ -98,6 +165,53 @@ Die Eigenschaften haben folgende Bedeutung:
 **`difficulty`**
 
 :   Schwierigkeitsgrad der Challenge. Der Standardwert ist `4`.
+
+## RestCaptcha.IpReputationCheck
+
+RESTCaptcha kann auf Wunsch die Reputation der Client-IP überprüfen, bevor es entscheidet, welöche Challnge zurückgesgesndet werden soll. Dabei kann auf die folgednen zwei Reputation-Dienste zurückgegriffen werden:
+
++ [AbuseDBIP](https://www.abuseipdb.com/): Eine öffentlich zugängliche Datenbank, die dabei hilft, schädliche IP-Adressen zu identifizieren. Nutzer und Sicherheitssysteme können dort verdächtige IPs melden. Die Plattform sammelt diese Meldungen, bewertet die IPs anhand eines *Abuse Confidence Score* und bietet eine API, über die Entwickler automatisiert prüfen können, ob eine IP-Adresse als gefährlich eingestuft wird. Für die kostenlose Nutzung der API wird ein API-Key benötigt.
+
++ [Spamhaus](https://www.spamhaus.org/): Eine international anerkannte Organisation, die Daten über Spam, Malware-Verteilung, Botnet-Aktivitäten und andere Sicherheitsbedrohungen sammelt und bereitstellt. Ihre Datenbanken (z. B. SBL, XBL, PBL, DROP/EDROP) werden weltweit von E-Mail-Servern, Firewalls und Sicherheitsdiensten genutzt, um schädliche IP-Adressen, Domains und Botnet-Infrastrukturen zu erkennen und zu blockieren. Eine kostenlose Abfrage ist via DNS Query möglich.
+
+Standardmäßig ist nur die Abfrage via Spamhaus aktiviert, da für AbuseDBIP ein individueller Api-Key benötigt wird. Der folgende Konfigurationsausschnitt zeigt die Standardwerte für `RestCaptcha.IpReputationCheck`: 
+
+``` json
+{
+  ...
+  "RestCaptcha": {
+    ...    
+    "IpReputationCheck": {
+      "AbuseIPDB": {
+        "enabled": false,
+        "apiKey": "my-api-key"
+      },
+      "Spamhaus": {
+        "enabled": true
+      }
+    },
+    ...
+  }
+}
+```
+
+Die Eigenschaften haben folgende Bedeutung:
+
+**`AbuseIPDB.enabled`**
+
+:   Soll eine IP-Reputationsabfrage via AbuseIPDB durchgeführt werden?
+
+**`AbuseIPDB.apiKey`**
+
+:   API-Key für AbuseIPDB.
+
+**`Spamhaus.enabled`**
+
+:   Soll eine IP-Reputationsabfrage via Spamhaus durchgeführt werden?
+
+!!! note "Risiko-Score"
+
+    Ist die IP-Reputationsabfrage komplett deaktiviert oder ist eine Client-IP in keinem der beiden Dienste verzeichnet, ist der Risiko-Score immer 0.
 
 ## RestCaptcha.HealthCheck
 
@@ -123,12 +237,13 @@ Eine typsche Antwort sieht wie folgt aus:
 }
 ```
 
-Standardmäßig ist der HealthCheck-Endpunkt ohne Einschränkungen erreichbar, kann aber jederzeit eingeschränkt oder ganz deaktiviert werden. Die folgende Konfigurationsausschnitt zeigt die Standardwerte für `RestCaptcha.HealthCheck`: 
+Standardmäßig ist der HealthCheck-Endpunkt ohne Einschränkungen erreichbar, kann aber jederzeit eingeschränkt oder ganz deaktiviert werden. Der folgende Konfigurationsausschnitt zeigt die Standardwerte für `RestCaptcha.HealthCheck`: 
 
 ``` json
 {
   ...
   "RestCaptcha": {
+    ...
     "HealthCheck": {
       "Enabled": true,
       "PrivateOnly": false,
@@ -136,9 +251,7 @@ Standardmäßig ist der HealthCheck-Endpunkt ohne Einschränkungen erreichbar, k
       "AllowCidrs": [],
       "Keys": []
     },
-    "Sites": [
-      ...
-    ]
+    ...
   }
 }
 ```
@@ -198,6 +311,7 @@ Damit Webseiten mit dem RESTCaptcha-Server interagieren können, müssen Sie reg
         "validHostNames": ["www.beispiel.de"]
       }
     ]
+    ...
   }
 }
 ```

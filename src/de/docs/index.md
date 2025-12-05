@@ -7,11 +7,12 @@ Funktionen:
 + Zustandslose Herausforderung (challenge) mit HMAC-signiertem Nonce (Zeichenfolge zur einmaligen Verwendung)
 + Clientseitiges Proof-of-Work-Rätsel (SHA-256-, SHA-384- oder SHA-512-Hash unterhalb eines Schwellenwerts)
 + CDN-fähiges restcaptcha.min.js-Skript mit konfigurierbarem API-Endpunkt
++ Optionale Überprüfung der IP-Reputation via (AbuseDBIP)[https://www.abuseipdb.com/] und/oder [Spamhaus](https://www.spamhaus.org/) als zusätzliche Schutzmaßnahme
 + Einfach integrierbar mit [Node.js](https://nodejs.org/), [PHP](https://www.php.net/), [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet) oder jeder anderen Servertechnologie
 + Beliebig anpassbar
 + Unterstützt vier verschiedene Modi (interaktiv, automatisch, unsichtbar, headless)
 + Multilingual (zurzeit: Englisch, Deutsch, Französisch, Italienisch, Portugiesisch, Spanisch)
-+ Entwickelt mit [.NET 9](https://dotnet.microsoft.com/) und [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript).
++ Entwickelt mit [.NET](https://dotnet.microsoft.com/) und [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript).
 
 ## Datenschutz
 
@@ -19,6 +20,7 @@ RESTCaptcha verarbeitet oder speichert keine personenbezogenen Daten:
 
 + Es werden keine Cookies oder serverseitige Tracking-Technologien eingesetzt.
 + Die Fingerprint-Überprüfung des Web-Browsers läuft vollständig clientseitig ab.
++ Beim Generieren der Challenge wird optional die Reputation der IP-Adresse des Clients überprüft. 
 + Bei der Verifizierung werden nur die für den technischen Ablauf notwendigen Daten verarbeitet: Die anonyme Challenge-Lösung und (je nach Konfiguration) die IP-Adresse des Clients für Logging-Zwecke.
 + RESTCaptcha kann vollständig auf eigenen Servern betrieben werden, sodass alle Daten unter eigener Kontrolle bleiben.
 + Der Quellcode ist offen (Open Source) und kann jederzeit überprüft oder auditiert werden.

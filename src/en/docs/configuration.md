@@ -12,12 +12,15 @@ The following snippet shows the default values for `RestCaptcha`:
 {
   ...
   "RestCaptcha": {
-    "ChallengeType": {
+    "BehaviorMap": [
       ...
-    },
-    "HMACKey": "<Generated value>",
+    ],
+    "HMACKey": "<Generierter Wert>",
     "NonceMaxTTL": "00:30:00",
     "VerificationMinDelay": "00:00:02",
+    "IpReputationCheck": {
+      ...
+    },
     "HealthCheck": {
       ...
     },
@@ -30,10 +33,9 @@ The following snippet shows the default values for `RestCaptcha`:
 
 The properties have the following meanings:
 
-**`ChallengeType`**
+**`BehaviorMap`**
 
-:   Configuration data for the challenge type returned when a form page requests one (see below).
-The challenge type defines what the user or the form page itself must do to generate a valid solution.
+:   Defines how RESTCaptcha should respond to different risk values of a request. The higher the risk score, the stricter the measure should be. The risk score ranges from 0 (very low risk) to 100 (very high risk). Possible responses include either a captcha challenge with varying degrees of difficulty or blocking the request.
 
 **`HMACKey`**
 
@@ -51,6 +53,10 @@ Default value: `"00:30:00"` (30 minutes).
 :   Minimum delay between receiving the challenge request and performing server-side verification.
 Default value: `"00:00:02"` (2 seconds).
 
+**`IpReputationCheck`**
+
+:   Configuration data for performing IP reputation checks. IP reputation checks are crucial for generating a risk score.
+
 **`HealthCheck`**
 
 :   Configuration data for the HealthCheck endpoint (see below).
@@ -61,7 +67,70 @@ Default value: `"00:00:02"` (2 seconds).
 
 ---
 
-## RestCaptcha.ChallengeType
+## RestCaptcha.BehaviorMap[]
+
+Typical content in the BehaviourMap looks like this:
+
+``` json
+{
+  ...
+  "RestCaptcha": {
+    ...
+    "BehaviorMap": [
+    {
+      "minRiskScore": 0,
+      "maxRiskScore": 25,
+      "action": "challenge",
+      "ChallengeType": {
+        "type": "proofOfWork",
+        "algorithm": "hash-sha-256",
+        "difficulty": 4
+      }
+    },
+    {
+      "minRiskScore": 25,
+      "maxRiskScore": 75,
+      "action": "challenge",
+      "ChallengeType": {
+        "type": "proofOfWork",
+        "algorithm": "hash-sha-512",
+        "difficulty": 6
+      }
+    },
+    {
+      "minRiskScore": 75,
+      "maxRiskScore": 100,
+      "action": "block"
+    }
+  ],
+  ...
+}  
+```
+
+Each entry defines a response for a specific risk score range. The properties have the following meanings:
+
+**`minRiskScore`**
+
+:   The minimum risk score at which something should happen.
+
+**`maxRiskScore`**
+
+:   The maximum risk score at which something should happen.
+
+**`action`**
+
+:   The action associated with the defined risk score range:
+
+    Value        | Description
+    ------------| ------------
+    `challenge` | A challenge is generated and returned.
+    `block`     | The request is blocked.
+
+**`ChallengeType`**
+
+:   If specified as action `challenge`, the desired challenge type is defined here.
+
+## RestCaptcha.BehaviorMap[].ChallengeType
 
 RESTCaptcha is designed to support multiple challenge types (currently, only one is implemented 😊).
 
@@ -80,13 +149,10 @@ The following snippet shows the default values for the `proofOfWork` challenge t
 ``` json
 {
   ...
-  "RestCaptcha": {
-    "ChallengeType": {
-      "type": "proofOfWork",
-      "algorithm": "hash-sha-256",
-      "difficulty": 4
-    },
-    ...
+  "ChallengeType": {
+    "type": "proofOfWork",
+    "algorithm": "hash-sha-256",
+    "difficulty": 4
   }
 }
 ```
@@ -106,6 +172,54 @@ The properties have the following meanings:
 **`difficulty`**
 
 :   Difficulty level of the challenge. Default value: `4`.
+
+
+## RestCaptcha.IpReputationCheck
+
+RESTCaptcha can check the reputation of the client IP before deciding which challenge to send back. The following two reputation services can be used for this purpose:
+
++ [AbuseDBIP](https://www.abuseipdb.com/): A publicly accessible database that helps identify malicious IP addresses. Users and security systems can report suspicious IPs there. The platform collects these reports, evaluates the IPs using an Abuse Confidence Score, and provides an API that developers can use to automatically check whether an IP address is classified as dangerous. An API key is required to use the API free of charge.
+
++ [Spamhaus](https://www.spamhaus.org/): An internationally recognised organisation that collects and provides data on spam, malware distribution, botnet activity and other security threats. Its databases (e.g. SBL, XBL, PBL, DROP/EDROP) are used worldwide by email servers, firewalls and security services to detect and block malicious IP addresses, domains and botnet infrastructures. A free query is possible via DNS query.
+
+By default, only queries via Spamhaus are enabled, as AbuseDBIP requires an individual API key. The following configuration excerpt shows the default values for `RestCaptcha.IpReputationCheck`: 
+
+``` json
+{
+  ...
+  "RestCaptcha": {
+    ...    
+    "IpReputationCheck": {
+      "AbuseIPDB": {
+        "enabled": false,
+        "apiKey": "my-api-key"
+      },
+      "Spamhaus": {
+        "enabled": true
+      }
+    },
+    ...
+  }
+}
+```
+
+The properties have the following meanings:
+
+**`AbuseIPDB.enabled`**
+
+:   Should an IP reputation query be performed via AbuseIPDB?
+
+**`AbuseIPDB.apiKey`**
+
+:   API key for AbuseIPDB.
+
+**`Spamhaus.enabled`**
+
+:   Should an IP reputation query be performed via Spamhaus?
+
+!!! note ‘Risk score’
+
+    If the IP reputation query is completely deactivated or if a client IP is not listed in either of the two services, the risk score is always 0.
 
 ## RestCaptcha.HealthCheck
 
@@ -139,6 +253,7 @@ The following configuration snippet shows the default values for `RestCaptcha.He
 {
   ...
   "RestCaptcha": {
+    ...
     "HealthCheck": {
       "Enabled": true,
       "PrivateOnly": false,
@@ -146,12 +261,12 @@ The following configuration snippet shows the default values for `RestCaptcha.He
       "AllowCidrs": [],
       "Keys": []
     },
-    "Sites": [
-      ...
-    ]
+    ...
   }
 }
 ```
+
+The properties have the following meanings:
 
 **`Enabled`**
 

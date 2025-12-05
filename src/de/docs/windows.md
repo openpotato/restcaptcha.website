@@ -43,10 +43,10 @@ Invoke-WebRequest -Uri "http://localhost" -UseBasicParsing
 
 RESTCaptcha benötigt das [ASP\.NET-Framework](https://dotnet.microsoft.com/apps/aspnet) als Abhängigkeit.
 
-Öffne die PowerShell als Administrator und tippe folgenden Befehl ein, um das [ASP.NET Core 9.0 Runtime - Windows Hosting Bundle](https://dotnet.microsoft.com/download/dotnet/9.0) zu installieren:
+Öffne die PowerShell als Administrator und tippe folgenden Befehl ein, um das [ASP.NET Core 10.0 Runtime - Windows Hosting Bundle](https://dotnet.microsoft.com/download/dotnet/10.0) zu installieren:
 
 ``` powershell
-winget install --id=Microsoft.DotNet.HostingBundle.9 -e --accept-package-agreements --accept-source-agreements
+winget install --id=Microsoft.DotNet.HostingBundle.10 -e --accept-package-agreements --accept-source-agreements
 ```
 
 ## Installation RESTCaptcha
@@ -162,7 +162,7 @@ Lege im Ordner `C:\Sites\RestCaptcha` eine neue Datei mit Namen `web.config` an 
 </configuration>
 ```
 
-Die Datei [web.config](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/web-config?view=aspnetcore-9.0) konfiguriert das Hosting von RESTCaptcha als ASP\.NET-Applikation, also die Art und Weise, wie einkommende Anfragen an RESTCaptcha weitergeleitet werden. In unserem Fall läuft RESTCaptcha innerhalb des IIS-Arbeitsprozesses (in-process hosting model).
+Die Datei [web.config](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/web-config?view=aspnetcore-10.0) konfiguriert das Hosting von RESTCaptcha als ASP\.NET-Applikation, also die Art und Weise, wie einkommende Anfragen an RESTCaptcha weitergeleitet werden. In unserem Fall läuft RESTCaptcha innerhalb des IIS-Arbeitsprozesses (in-process hosting model).
 
 Wir sind mit der Basiskonfiguration fertig. Starte Deine IIS-Site neu:
 
