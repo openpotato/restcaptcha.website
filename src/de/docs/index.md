@@ -7,7 +7,7 @@ Funktionen:
 + Zustandslose Herausforderung (challenge) mit HMAC-signiertem Nonce (Zeichenfolge zur einmaligen Verwendung)
 + Clientseitiges Proof-of-Work-Rätsel (SHA-256-, SHA-384- oder SHA-512-Hash unterhalb eines Schwellenwerts)
 + CDN-fähiges restcaptcha.min.js-Skript mit konfigurierbarem API-Endpunkt
-+ Optionale Überprüfung der IP-Reputation via (AbuseDBIP)[https://www.abuseipdb.com/] und/oder [Spamhaus](https://www.spamhaus.org/) als zusätzliche Schutzmaßnahme
++ Optionale Überprüfung der IP-Reputation via [AbuseDBIP](https://www.abuseipdb.com/) und/oder [Spamhaus](https://www.spamhaus.org/) als zusätzliche Schutzmaßnahme
 + Einfach integrierbar mit [Node.js](https://nodejs.org/), [PHP](https://www.php.net/), [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet) oder jeder anderen Servertechnologie
 + Beliebig anpassbar
 + Unterstützt vier verschiedene Modi (interaktiv, automatisch, unsichtbar, headless)

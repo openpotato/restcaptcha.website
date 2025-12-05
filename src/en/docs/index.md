@@ -7,7 +7,7 @@ Features:
 + Stateless challenge with an HMAC-signed nonce (a one-time-use string)
 + Client-side proof-of-work puzzle (SHA-256, SHA-384, or SHA-512 hash below a defined threshold)
 + CDN-ready `restcaptcha.min.js` script with a configurable API endpoint
-+ Optional IP reputation check via (AbuseDBIP)[https://www.abuseipdb.com/] and/or [Spamhaus](https://www.spamhaus.org/) as an additional protective measure
++ Optional IP reputation check via [AbuseDBIP](https://www.abuseipdb.com/) and/or [Spamhaus](https://www.spamhaus.org/) as an additional protective measure
 + Easy to integrate with [Node.js](https://nodejs.org/), [PHP](https://www.php.net/), [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet), or any other server technology
 + Fully customisable
 + Supports four different modes (interactive, automatic, invisible, headless)
