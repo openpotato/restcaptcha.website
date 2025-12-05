@@ -22,7 +22,7 @@ Wer jedoch eine moderne CAPTCHA-Lösung für den Eigenbetrieb sucht, die komplet
 
 Eine Lösung wie RESTCaptcha selber zu betreiben (Englisch: self-hosting), bedeutet, dass Du als Administrator RESTCaptcha auf einem Server Deiner Wahl installierst, konfigurierst und betreust. Damit hast Du die komplette Kontrolle über Deinen CAPTCHA-Dienst. Alle Informationen zu Installation, Konfiguration und Integration von RESTCaptcha findest Du auf dieser Webseite.
 
-Solltest Du trotzdem das Gefühl haben, eine helfende Hand zu benötigen, frag uns einfach unter `openpotato@stueber.de`. Wir beißen nicht :-)
+Solltest Du trotzdem das Gefühl haben, eine helfende Hand zu benötigen, schreib uns einfach unter `openpotato@stueber.de`. Wir beißen nicht :-)
 
 ## Ich habe einen Fehler gefunden!
 

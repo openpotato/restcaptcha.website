@@ -22,7 +22,7 @@ If you’re looking for a modern CAPTCHA you can run yourself, that’s complete
 
 Running a solution like RESTCaptcha yourself (self-hosting) means that, as the administrator, you install, configure, and operate RESTCaptcha on a server of your choice. You retain full control over your CAPTCHA service. All information on installing, configuring, and integrating RESTCaptcha can be found on this website.
 
-If you still feel you need a helping hand, just ask us at `openpotato@stueber.de`. We don’t bite 🙂
+If you still feel you need a helping hand, just write us at `openpotato@stueber.de`. We don’t bite 🙂
 
 ## I’ve found a bug!
 

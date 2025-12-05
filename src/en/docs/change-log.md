@@ -8,7 +8,7 @@ We largely follow the recommendations from the community project [Keep a Changel
 
 **Added**
 
-+ Support for IP reputation checks via (AbuseDBIP)[https://www.abuseipdb.com/] and/or [Spamhaus](https://www.spamhaus.org/).
++ Support for IP reputation checks via [AbuseDBIP](https://www.abuseipdb.com/) and/or [Spamhaus](https://www.spamhaus.org/).
 + Support for .NET 10.
 
 ## 0.1.0 <small>_October 30, 2025</small>

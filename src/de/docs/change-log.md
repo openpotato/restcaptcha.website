@@ -8,7 +8,7 @@ Wir halten uns dabei weitestgehend an die Empfehlungen aus dem Community-Projekt
 
 **Hinzugefügt**
 
-+ Support für IP reputation checks via (AbuseDBIP)[https://www.abuseipdb.com/] und/oder [Spamhaus](https://www.spamhaus.org/).
++ Support für IP reputation checks via [AbuseDBIP](https://www.abuseipdb.com/) und/oder [Spamhaus](https://www.spamhaus.org/).
 + Support für .NET 10.
 
 ## 0.1.0 <small>_ 30. Oktober 2025</small>
