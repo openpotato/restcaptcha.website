@@ -335,7 +335,7 @@ Die Eigenschaften haben folgende Bedeutung:
 
     CIDR             | Bedeutung                                      | Anzahl der IPs        | Verwendung
     ---------------- | ---------------------------------------------- | --------------------- | ----------
-    192.168.0.0/24   | Die ersten 24 Bits sind Netzwerkbits           | 256 IPs (254 nutzbar) | Typisches Heim-LAN
+    192.168.0.0/24   | Die ersten 24 Bits sind Netzwerkbits           | 256 IPs (254 nutzbar) | Typisches Home-LAN
     10.0.0.0/8       | Netzwerk = 10.x.x.x                            | 16.777.216 IPs        | Große private Netzwerke
     172.16.0.0/12    | Netzwerk = 172.16.0.0–172.31.255.255           | 1.048.576 IPs         | Private Netzwerke
     192.168.1.128/25 | Netzwerk aufgeteilt in die oberen 128 Adressen | 128 IPs               | Subnetting / Lastenausgleich
@@ -343,12 +343,12 @@ Die Eigenschaften haben folgende Bedeutung:
 
     Typische Beispiele für IPv6:
 
-    CIDR                    | Bedeutung
-    ----------------------- | ---------
-    2001:db8::/32           | Dokumentationspräfix (großer Block)
-    2001:db8:abcd::/48      | Typische Zuweisung für ISP-Kunden
-    2001:db8:abcd:1234::/64 | Standard-IPv6-LAN-Subnetz
-    fe80::/10               | Link-lokaler Adressbereich
+    CIDR                     | Bedeutung
+    ------------------------ | ---------
+    2001:db8::/32            | Dokumentationspräfix (großer Block)
+    2001:db8:abcd::/48       | Typische Zuweisung für ISP-Kunden
+    2001:db8:abcd\:1234::/64 | Standard-IPv6-LAN-Subnetz
+    fe80::/10                | Link-Local-Adressbereich
 
 **`Keys`**
 

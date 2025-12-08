@@ -350,12 +350,12 @@ The properties have the following meanings:
 
     Typical examples for IPv6:
 
-    CIDR                    | Meaning
-    ----------------------- | -------
-    2001:db8::/32           | Documentation prefix (large block)
-    2001:db8:abcd::/48      | Typical ISP customer assignment
-    2001:db8:abcd:1234::/64 | Standard IPv6 LAN subnet
-    fe80::/10               | Link-local address range
+    CIDR                     | Meaning
+    ------------------------ | -------
+    2001:db8::/32            | Documentation prefix (large block)
+    2001:db8:abcd::/48       | Typical ISP customer assignment
+    2001:db8:abcd\:1234::/64 | Standard IPv6 LAN subnet
+    fe80::/10                | Link-local address range
 
 **`Keys`**
 
