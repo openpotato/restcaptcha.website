@@ -2,9 +2,9 @@
 
 This is the documentation for the [RESTCaptcha project](https://github.com/openpotato/restcaptcha).
 
-## Technology stack
+## Website
 
-We have implemented this documentation using [MkDocs](https://www.mkdocs.org) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material).
+The documentation is Open Source and we have implemented using [Zensical](https://zensical.org/). It is published under https://www.codelisthub.org.
 
 ## Can I help?
 
